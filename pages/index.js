@@ -2,28 +2,20 @@ import { Fragment } from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
 
-const DUMMY_DATA = [
-  { id: 1, type: 'Housing', expense: 8000 },
-  { id: 2, type: 'Health', expense: 700 },
-  { id: 3, type: 'Entertainment', expense: 7800 },
-  { id: 4, type: 'Savings', expense: 9000 },
-  { id: 5, type: 'Miscellaneous', expense: 9000 },
-];
-
-const DUMMY_DATA2 = [
-  { id: 1, type: 'Housing', expense: 8000 * 0.2 },
-  { id: 2, type: 'Health', expense: 700 * 0.1 },
-  { id: 3, type: 'Entertainment', expense: 7800 * 0.05 },
-  { id: 4, type: 'Savings', expense: 9000 * 0.5 },
-  { id: 5, type: 'Miscellaneous', expense: 9000 * 0.15 },
-];
+const DUMMY_DATA = {
+  Housing: 8000,
+  Health: 700,
+  Entertainment: 7800,
+  Savings: 9000,
+  Miscellaneous: 9000,
+};
 
 function Home() {
   function sendProps() {
     Router.push({
       pathname: '/piechart',
       query: {
-        data: JSON.stringify(DUMMY_DATA),
+        q: JSON.stringify(DUMMY_DATA),
       },
     });
   }

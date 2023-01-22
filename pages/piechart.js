@@ -5,45 +5,33 @@ import classes from '../styles/piechart.module.css';
 
 function piechart() {
   const router = useRouter();
-  const { data } = router.query;
+  const { q } = router.query;
 
-  const data1 = JSON.parse(data);
-  console.log(data1);
-  // const props = { userData };
+  const data1 = JSON.parse(q);
+
   const userData = {
-    labels: data1.map((data) => data.type),
+    labels: Object.keys(data1),
     datasets: [
       {
         label: 'Expense',
-        data: data1.map((data) => data.expense),
+        data: Object.values(data1),
         // backgroundColor: ['green'],
       },
     ],
   };
 
-  const data2 = data1.map((item) => {
-    if (item.type === 'Housing') {
-      item.expense *= 0.2;
-    } else if (item.type === 'Health') {
-      item.expense *= 0.1;
-    } else if (item.type === 'Health') {
-      item.expense *= 0.05;
-    } else if (item.type === 'Entertainment') {
-      item.expense *= 0.05;
-    } else if (item.type === 'Savings') {
-      item.expense *= 0.5;
-    } else {
-      item.expense *= 0.15;
-    }
-    return item;
-  });
+  data1.Housing *= 0.2;
+  data1.Health *= 0.1;
+  data1.Entertainment *= 0.05;
+  data1.Savings *= 0.05;
+  data1.Miscellaneous *= 0.15;
 
   const standardData = {
-    labels: data2.map((data) => data.type),
+    labels: Object.keys(data1),
     datasets: [
       {
         label: 'Expense',
-        data: data2.map((data) => data.expense),
+        data: Object.values(data1),
         // backgroundColor: ['green'],
       },
     ],
